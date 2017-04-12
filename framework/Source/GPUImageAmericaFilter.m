@@ -14,34 +14,29 @@ NSString *const kGPUImageAmericaFragmentShaderString = SHADER_STRING
  
  void main()
  {
-     
-     highp vec4 inputColor = texture2D(sTexture, vTextureCoord);
-     highp vec4 darkBlue = vec4(.012, .195, .297, 1.0);
-     highp vec4 mediumRed = vec4(0.824, 0.117, 0.164, 1.0);
-     highp vec4 lightGray = vec4(0.492, 0.644, 0.679, 1.0);
      highp float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
      
      lowp vec4 colorToDisplay = vec4(1.0, 0.941, 0.668, 1.0);
-     if (mod(textureCoordinate.x + textureCoordinate.y, crossHatchSpacing) <= lineWidth / 2.0)
+     if (mod(textureCoordinate.x - textureCoordinate.y, crossHatchSpacing) <= lineWidth / 2.0)
      {
-         colorToDisplay = lightGray;
+         colorToDisplay = vec4(0.492, 0.644, 0.679, 1.0);
      }
      if (luminance < 0.65)
      {
-         colorToDisplay = lightGray;
+         colorToDisplay = vec4(0.492, 0.644, 0.679, 1.0);
      }
      if (luminance < 0.50)
      {
-         colorToDisplay = mediumRed;
+         colorToDisplay = vec4(0.824, 0.117, 0.164, 1.0);
      }
      if (luminance < 0.3)
      {
-         colorToDisplay = darkBlue;
+         colorToDisplay = vec4(.012, .195, .297, 1.0);
      }
      
      gl_FragColor = colorToDisplay;
  }
-);
+ );
 #else
 NSString *const kGPUImageAmericaFragmentShaderString = SHADER_STRING
 (
@@ -56,28 +51,24 @@ NSString *const kGPUImageAmericaFragmentShaderString = SHADER_STRING
  
  void main()
  {
-     highp vec4 inputColor = texture2D(sTexture, vTextureCoord);
-     highp vec4 darkBlue = vec4(.012, .195, .297, 1.0);
-     highp vec4 mediumRed = vec4(0.824, 0.117, 0.164, 1.0);
-     highp vec4 lightGray = vec4(0.492, 0.644, 0.679, 1.0);
-     highp float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
+     float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
      
-     lowp vec4 colorToDisplay = vec4(1.0, 0.941, 0.668, 1.0);
-     if (mod(textureCoordinate.x + textureCoordinate.y, crossHatchSpacing) <= lineWidth / 2.0)
+     vec4 colorToDisplay = vec4(1.0, 0.941, 0.668, 1.0);
+     if (mod(textureCoordinate.x - textureCoordinate.y, crossHatchSpacing) <= lineWidth / 2.0)
      {
-         colorToDisplay = lightGray;
+         colorToDisplay = vec4(0.492, 0.644, 0.679, 1.0);
      }
      if (luminance < 0.65)
      {
-         colorToDisplay = lightGray;
+         colorToDisplay = vec4(0.492, 0.644, 0.679, 1.0);
      }
      if (luminance < 0.50)
      {
-         colorToDisplay = mediumRed;
+         colorToDisplay = vec4(0.824, 0.117, 0.164, 1.0);
      }
      if (luminance < 0.3)
      {
-         colorToDisplay = darkBlue;
+         colorToDisplay = vec4(.012, .195, .297, 1.0);
      }
      
      gl_FragColor = colorToDisplay;
@@ -85,16 +76,10 @@ NSString *const kGPUImageAmericaFragmentShaderString = SHADER_STRING
  );
 #endif
 
-@interface GPUImageAmericaFilter ()
-{
-    GLint crossHatchSpacingUniform, lineWidthUniform;
-    CGFloat crossHatchSpacing, lineWidth;
-}
-
-@end
-
 @implementation GPUImageAmericaFilter
 
+@synthesize crossHatchSpacing = _crossHatchSpacing;
+@synthesize lineWidth = _lineWidth;
 
 #pragma mark -
 #pragma mark Initialization and teardown
@@ -109,10 +94,44 @@ NSString *const kGPUImageAmericaFragmentShaderString = SHADER_STRING
     crossHatchSpacingUniform = [filterProgram uniformIndex:@"crossHatchSpacing"];
     lineWidthUniform = [filterProgram uniformIndex:@"lineWidth"];
     
-    crossHatchSpacing = 0.015;
-    lineWidth = 0.004;
+    self.crossHatchSpacing = 0.015;
+    self.lineWidth = 0.004;
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setCrossHatchSpacing:(CGFloat)newValue;
+{
+    CGFloat singlePixelSpacing;
+    if (inputTextureSize.width != 0.0)
+    {
+        singlePixelSpacing = 1.0 / inputTextureSize.width;
+    }
+    else
+    {
+        singlePixelSpacing = 1.0 / 2048.0;
+    }
+    
+    if (newValue < singlePixelSpacing)
+    {
+        _crossHatchSpacing = singlePixelSpacing;
+    }
+    else
+    {
+        _crossHatchSpacing = newValue;
+    }
+    
+    [self setFloat:_crossHatchSpacing forUniform:crossHatchSpacingUniform program:filterProgram];
+}
+
+- (void)setLineWidth:(CGFloat)newValue;
+{
+    _lineWidth = newValue;
+    
+    [self setFloat:_lineWidth forUniform:lineWidthUniform program:filterProgram];
 }
 
 @end
