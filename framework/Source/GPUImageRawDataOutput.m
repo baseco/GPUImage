@@ -186,7 +186,14 @@
     hasReadFromTheCurrentFrame = NO;
     
     if (_newFrameBufferWithTimeAvailableBlock) {
-        _newFrameBufferWithTimeAvailableBlock(outputFramebuffer, frameTime);
+        
+        [GPUImageContext useImageProcessingContext];
+        [self renderAtInternalSize];
+        hasReadFromTheCurrentFrame = YES;
+        
+        if (outputFramebuffer) {
+            _newFrameBufferWithTimeAvailableBlock(outputFramebuffer, frameTime);
+        }
     }
     
     if (_newFrameAvailableBlock != NULL)
