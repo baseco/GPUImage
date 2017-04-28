@@ -185,6 +185,10 @@
 {
     hasReadFromTheCurrentFrame = NO;
     
+    if (_newFrameBufferAvailableBlock != NULL) {
+        _newFrameBufferAvailableBlock(outputFramebuffer);
+    }
+    
     if (_newFrameAvailableBlock != NULL)
     {
         _newFrameAvailableBlock();

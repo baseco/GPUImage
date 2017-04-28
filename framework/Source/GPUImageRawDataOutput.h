@@ -26,6 +26,7 @@ typedef struct GPUByteColorVector GPUByteColorVector;
 #endif
 
 @property(readonly) GLubyte *rawBytesForImage;
+@property(nonatomic, copy) void(^newFrameBufferAvailableBlock)(GPUImageFramebuffer *);
 @property(nonatomic, copy) void(^newFrameAvailableBlock)(void);
 @property(nonatomic) BOOL enabled;
 
