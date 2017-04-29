@@ -191,7 +191,7 @@
         [self renderAtInternalSize];
         hasReadFromTheCurrentFrame = YES;
         
-        if (outputFramebuffer) {
+        if (outputFramebuffer && _newFrameBufferWithTimeAvailableBlock) {
             _newFrameBufferWithTimeAvailableBlock(outputFramebuffer, frameTime);
         }
     }
