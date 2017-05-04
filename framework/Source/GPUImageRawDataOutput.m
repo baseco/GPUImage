@@ -187,9 +187,22 @@
     
     if (_newFrameBufferWithTimeAvailableBlock) {
         
-        [GPUImageContext useImageProcessingContext];
-        [self renderAtInternalSize];
-        hasReadFromTheCurrentFrame = YES;
+        runSynchronouslyOnVideoProcessingQueue(^{
+            [GPUImageContext useImageProcessingContext];
+            [self renderAtInternalSize];
+            
+            if ([GPUImageContext supportsFastTextureUpload])
+            {
+                glFinish();
+            }
+            else
+            {
+                glReadPixels(0, 0, imageSize.width, imageSize.height, GL_RGBA, GL_UNSIGNED_BYTE, _rawBytesForImage);
+            }
+            
+            hasReadFromTheCurrentFrame = YES;
+            
+        });
         
         if (outputFramebuffer && _newFrameBufferWithTimeAvailableBlock) {
             _newFrameBufferWithTimeAvailableBlock(outputFramebuffer, frameTime);
