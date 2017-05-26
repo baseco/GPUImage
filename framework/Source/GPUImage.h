@@ -167,4 +167,7 @@
 #import "GPUImageColorConversion.h"
 #import "GPUImageColourFASTFeatureDetector.h"
 #import "GPUImageColourFASTSamplingOperation.h"
+#import "GPUImageAmericaFilter.h"
+#import "GPUImageAmerikanaFilter.h"
+#import "GPUImageAndyFilter.h"
 
