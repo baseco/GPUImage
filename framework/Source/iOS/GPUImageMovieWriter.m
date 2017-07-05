@@ -16,8 +16,6 @@ NSString *const kGPUImageColorSwizzlingFragmentShaderString = SHADER_STRING
  }
 );
 
-static BOOL allowWriteAudio = NO;
-
 @interface GPUImageMovieWriter ()
 {
     GLuint movieFramebuffer, movieRenderbuffer;
@@ -29,6 +27,9 @@ static BOOL allowWriteAudio = NO;
     GPUImageFramebuffer *firstInputFramebuffer;
     
     BOOL discont;
+    BOOL allowWriteAudio;
+    BOOL willFinish;
+    void (^completeHandler)(void);
     CMTime startTime, previousFrameTime, previousAudioTime;
     CMTime offsetTime;
     
@@ -279,9 +280,8 @@ static BOOL allowWriteAudio = NO;
         }
     });
     isRecording = YES;
-	//    [assetWriter startSessionAtSourceTime:kCMTimeZero];
-    
     allowWriteAudio = NO;
+	//    [assetWriter startSessionAtSourceTime:kCMTimeZero];
 }
 
 - (void)startRecordingInOrientation:(CGAffineTransform)orientationTransform;
@@ -324,14 +324,26 @@ static BOOL allowWriteAudio = NO;
 - (void)finishRecordingWithCompletionHandler:(void (^)(void))handler;
 {
     runSynchronouslyOnContextQueue(_movieWriterContext, ^{
-        isRecording = NO;
+        willFinish = NO;
         
         if (assetWriter.status == AVAssetWriterStatusCompleted || assetWriter.status == AVAssetWriterStatusCancelled || assetWriter.status == AVAssetWriterStatusUnknown)
         {
+            isRecording = NO;
             if (handler)
                 runAsynchronouslyOnContextQueue(_movieWriterContext, handler);
             return;
         }
+        
+        allowWriteAudio = NO;
+        if (CMTimeCompare(previousFrameTime, previousAudioTime) == -1) {
+            // recoreded audio frame is longer than video frame
+            willFinish = YES;
+            completeHandler = handler;
+            return;
+        }
+        completeHandler = NULL;
+        isRecording = NO;
+        
         if( assetWriter.status == AVAssetWriterStatusWriting && ! videoEncodingIsFinished )
         {
             videoEncodingIsFinished = YES;
@@ -368,12 +380,7 @@ static BOOL allowWriteAudio = NO;
 
 - (void)processAudioBuffer:(CMSampleBufferRef)audioBuffer;
 {
-    if (!allowWriteAudio) {
-        return;
-    }
-    
-    if (!isRecording || _paused)
-    {
+    if (!isRecording || _paused || !allowWriteAudio) {
         return;
     }
     
@@ -393,6 +400,7 @@ static BOOL allowWriteAudio = NO;
                 }
                 [assetWriter startSessionAtSourceTime:currentSampleTime];
                 startTime = currentSampleTime;
+                allowWriteAudio = YES;
             });
         }
 
@@ -807,7 +815,6 @@ static BOOL allowWriteAudio = NO;
             {
                 if (![assetWriterPixelBufferInput appendPixelBuffer:pixel_buffer withPresentationTime:frameTime])
                     NSLog(@"Problem appending pixel buffer at time: %@", CFBridgingRelease(CMTimeCopyDescription(kCFAllocatorDefault, frameTime)));
-                allowWriteAudio = YES;
             }
             else
             {
@@ -827,6 +834,10 @@ static BOOL allowWriteAudio = NO;
         write();
         
         [inputFramebufferForBlock unlock];
+        if (willFinish && CMTimeCompare(previousFrameTime, previousAudioTime) != -1) {
+            willFinish = NO;
+            [self finishRecordingWithCompletionHandler:completeHandler];
+        }
     });
 }
 
