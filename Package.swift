@@ -43,7 +43,7 @@ let package = Package(
             publicHeadersPath: ".",
             cSettings: [
                 .define("CLANG_MODULES_AUTOLINK", to: "YES"),
-                .define("GCC_WARN_ABOUT_RETURN_TYPE", to: "YES", condition: .when(platforms: [.macOS]))
+                //.define("GCC_WARN_ABOUT_RETURN_TYPE", to: "YES", condition: .when(platforms: [.macOS]))
             ],
             linkerSettings: [
                 .linkedFramework("OpenGLES"),
