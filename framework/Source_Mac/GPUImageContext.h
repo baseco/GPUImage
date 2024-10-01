@@ -1,9 +1,21 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreMedia/CoreMedia.h>
+#ifndef SWIFTPM
+#import <GPUImage/GLProgram.h>
+#else
 #import "GLProgram.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFramebuffer.h>
+#else
 #import "GPUImageFramebuffer.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFramebufferCache.h>
+#else
 #import "GPUImageFramebufferCache.h"
+#endif
 
 #define GPUImageRotationSwapsWidthAndHeight(rotation) (((rotation) == kGPUImageRotateLeft) || ((rotation) == kGPUImageRotateRight) || ((rotation) == kGPUImageRotateRightFlipVertical) )
 

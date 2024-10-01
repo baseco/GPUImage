@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 /** Adjusts the saturation of an image
  */

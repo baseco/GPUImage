@@ -1,7 +1,15 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageOutput.h>
+#else
 #import "GPUImageOutput.h"
+#endif
 
 /** Protocol for getting Movie played callback.
  */

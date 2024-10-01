@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Brad Larson. All rights reserved.
 //
 
+#ifndef SWIFTPM
+#import <GPUImage/GPUImagePicture.h>
+#else
 #import "GPUImagePicture.h"
+#endif
 
 @interface GPUImagePicture (TextureSubimage)
 

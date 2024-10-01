@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 // This is an accumulator that uses a Hough transform in parallel coordinate space to identify probable lines in a scene.
 //

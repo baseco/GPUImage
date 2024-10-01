@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoInputFilter.h>
+#else
 #import "GPUImageTwoInputFilter.h"
+#endif
 
 // This is the feature extraction phase of the ColourFAST feature detector, as described in:
 //

@@ -1,5 +1,9 @@
 #import <Cocoa/Cocoa.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
 
 typedef enum {
     kGPUImageFillModeStretch,                       // Stretch to fill the full view, which may distort the image outside of its normal aspect ratio

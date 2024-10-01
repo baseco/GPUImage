@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageHarrisCornerDetectionFilter.h>
+#else
 #import "GPUImageHarrisCornerDetectionFilter.h"
+#endif
 
 /** Shi-Tomasi feature detector
  

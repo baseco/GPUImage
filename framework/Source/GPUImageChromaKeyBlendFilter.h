@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoInputFilter.h>
+#else
 #import "GPUImageTwoInputFilter.h"
+#endif
 
 /** Selectively replaces a color in the first image with the second image
  */

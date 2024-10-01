@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
 
 typedef NS_ENUM(NSUInteger, GPUImageFillModeType) {
     kGPUImageFillModeStretch,                       // Stretch to fill the full view, which may distort the image outside of its normal aspect ratio

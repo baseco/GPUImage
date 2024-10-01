@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoPassFilter.h>
+#else
 #import "GPUImageTwoPassFilter.h"
+#endif
 
 @interface GPUImageSobelEdgeDetectionFilter : GPUImageTwoPassFilter
 {

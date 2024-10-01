@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImage3x3TextureSamplingFilter.h>
+#else
 #import "GPUImage3x3TextureSamplingFilter.h"
+#endif
 
 /** This uses Sobel edge detection to place a black border around objects,
  and then it quantizes the colors present in the image to give a cartoon-like quality to the image.

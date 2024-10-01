@@ -1,5 +1,13 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFramebuffer.h>
+#else
 #import "GPUImageFramebuffer.h"
+#endif
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>

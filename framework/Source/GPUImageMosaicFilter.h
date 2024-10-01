@@ -1,8 +1,16 @@
 
 // This needs a little more work, it's rotating the input tileset and there are some artifacts (I think from GL_LINEAR interpolation), but it's working
 
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoInputFilter.h>
+#else
 #import "GPUImageTwoInputFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImagePicture.h>
+#else
 #import "GPUImagePicture.h"
+#endif
 
 @interface GPUImageMosaicFilter : GPUImageTwoInputFilter {
     GLint inputTileSizeUniform, numTilesUniform, displayTileSizeUniform, colorOnUniform;

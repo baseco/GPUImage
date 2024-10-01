@@ -1,5 +1,13 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageOutput.h>
+#else
 #import "GPUImageOutput.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 @interface GPUImageFilterGroup : GPUImageOutput <GPUImageInput>
 {

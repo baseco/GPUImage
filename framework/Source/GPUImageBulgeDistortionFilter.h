@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 /// Creates a bulge distortion on the image
 @interface GPUImageBulgeDistortionFilter : GPUImageFilter

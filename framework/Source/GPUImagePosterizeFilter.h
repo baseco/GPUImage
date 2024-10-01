@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 /** This reduces the color dynamic range into the number of steps specified, leading to a cartoon-like simple shading of the image.
  */

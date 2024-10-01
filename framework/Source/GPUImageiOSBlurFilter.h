@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
 
 @class GPUImageSaturationFilter;
 @class GPUImageGaussianBlurFilter;

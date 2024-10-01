@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
 
 @protocol GPUImageTextureOutputDelegate;
 

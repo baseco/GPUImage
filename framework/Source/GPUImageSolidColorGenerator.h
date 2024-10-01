@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilter.h>
+#else
 #import "GPUImageFilter.h"
+#endif
 
 // This outputs an image with a constant color. You need to use -forceProcessingAtSize: in order to set the output image
 // dimensions, or this won't work correctly

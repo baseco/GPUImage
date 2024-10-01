@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageContext.h>
+#else
 #import "GPUImageContext.h"
+#endif
 
 extern NSString *const kGPUImageColorSwizzlingFragmentShaderString;
 

@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImage3x3TextureSamplingFilter.h>
+#else
 #import "GPUImage3x3TextureSamplingFilter.h"
+#endif
 
 /** Runs a 3x3 convolution kernel against the image
  */

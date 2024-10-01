@@ -1,5 +1,13 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoInputCrossTextureSamplingFilter.h>
+#else
 #import "GPUImageTwoInputCrossTextureSamplingFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
 
 @interface GPUImagePoissonBlendFilter : GPUImageTwoInputCrossTextureSamplingFilter
 {

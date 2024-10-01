@@ -1,6 +1,18 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageLowPassFilter.h>
+#else
 #import "GPUImageLowPassFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageAverageColor.h>
+#else
 #import "GPUImageAverageColor.h"
+#endif
 
 @interface GPUImageMotionDetector : GPUImageFilterGroup
 {

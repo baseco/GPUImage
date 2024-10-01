@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageOutput.h>
+#else
 #import "GPUImageOutput.h"
+#endif
 
 @interface GPUImageTextureInput : GPUImageOutput
 {

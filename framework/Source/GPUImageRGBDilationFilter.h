@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoPassTextureSamplingFilter.h>
+#else
 #import "GPUImageTwoPassTextureSamplingFilter.h"
+#endif
 
 // For each pixel, this sets it to the maximum value of each color channel in a rectangular neighborhood extending out dilationRadius pixels from the center.
 // This extends out brighter colors, and can be used for abstraction of color images.

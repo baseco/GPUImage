@@ -1,8 +1,28 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageThresholdEdgeDetectionFilter.h>
+#else
 #import "GPUImageThresholdEdgeDetectionFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageParallelCoordinateLineTransformFilter.h>
+#else
 #import "GPUImageParallelCoordinateLineTransformFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageThresholdedNonMaximumSuppressionFilter.h>
+#else
 #import "GPUImageThresholdedNonMaximumSuppressionFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageCannyEdgeDetectionFilter.h>
+#else
 #import "GPUImageCannyEdgeDetectionFilter.h"
+#endif
 
 // This applies a Hough transform to detect lines in a scene. It starts with a thresholded Sobel edge detection pass,
 // then takes those edge points in and applies a Hough transform to convert them to lines. The intersection of these lines

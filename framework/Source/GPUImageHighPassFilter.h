@@ -1,6 +1,18 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageLowPassFilter.h>
+#else
 #import "GPUImageLowPassFilter.h"
+#endif
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageDifferenceBlendFilter.h>
+#else
 #import "GPUImageDifferenceBlendFilter.h"
+#endif
 
 @interface GPUImageHighPassFilter : GPUImageFilterGroup
 {

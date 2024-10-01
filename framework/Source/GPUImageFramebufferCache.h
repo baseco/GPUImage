@@ -1,6 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFramebuffer.h>
+#else
 #import "GPUImageFramebuffer.h"
+#endif
 
 @interface GPUImageFramebufferCache : NSObject
 

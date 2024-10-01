@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageColorMatrixFilter.h>
+#else
 #import "GPUImageColorMatrixFilter.h"
+#endif
 
 @interface GPUImageHSBFilter : GPUImageColorMatrixFilter
 

@@ -6,7 +6,11 @@
 //
 //
 
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageMovie.h>
+#else
 #import "GPUImageMovie.h"
+#endif
 
 @interface GPUImageMovieComposition : GPUImageMovie
 

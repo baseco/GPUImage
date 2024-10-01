@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageTwoPassTextureSamplingFilter.h>
+#else
 #import "GPUImageTwoPassTextureSamplingFilter.h"
+#endif
 
 /** A Gaussian blur filter
     Interpolated optimization based on Daniel Rákos' work at http://rastergrid.com/blog/2010/09/efficient-gaussian-blur-with-linear-sampling/

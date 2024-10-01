@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageSobelEdgeDetectionFilter.h>
+#else
 #import "GPUImageSobelEdgeDetectionFilter.h"
+#endif
 
 /** Converts video to look like a sketch.
  

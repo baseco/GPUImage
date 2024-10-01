@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageThreeInputFilter.h>
+#else
 #import "GPUImageThreeInputFilter.h"
+#endif
 
 extern NSString *const kGPUImageFourInputTextureVertexShaderString;
 

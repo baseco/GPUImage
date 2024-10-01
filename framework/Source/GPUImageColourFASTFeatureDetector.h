@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageFilterGroup.h>
+#else
 #import "GPUImageFilterGroup.h"
+#endif
 
 // This generates image-wide feature descriptors using the ColourFAST process, as developed and described in
 //

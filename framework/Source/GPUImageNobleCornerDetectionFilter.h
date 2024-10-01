@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageHarrisCornerDetectionFilter.h>
+#else
 #import "GPUImageHarrisCornerDetectionFilter.h"
+#endif
 
 /** Noble corner detector
  

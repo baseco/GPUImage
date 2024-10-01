@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageOutput.h>
+#else
 #import "GPUImageOutput.h"
+#endif
 
 
 @interface GPUImagePicture : GPUImageOutput

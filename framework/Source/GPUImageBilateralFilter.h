@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageGaussianBlurFilter.h>
+#else
 #import "GPUImageGaussianBlurFilter.h"
+#endif
 
 @interface GPUImageBilateralFilter : GPUImageGaussianBlurFilter
 {

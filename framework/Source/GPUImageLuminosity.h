@@ -1,4 +1,8 @@
+#ifndef SWIFTPM
+#import <GPUImage/GPUImageAverageColor.h>
+#else
 #import "GPUImageAverageColor.h"
+#endif
 
 @interface GPUImageLuminosity : GPUImageAverageColor
 {
