@@ -20,7 +20,7 @@ let package = Package(
     targets: [
         .target(
             name: "GPUImage",
-            path: "framework",
+            path: ".",
           
             sources: [
                 "Source_iOS/GPUImageContext.m",
